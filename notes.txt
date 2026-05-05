@@ -1,0 +1,18 @@
+STARTUP INSTRUCTIONS
+    DOCKER
+        in `prediction_center`
+        docker compose up
+
+    LOCAL
+        docker database: in prediction_center
+        docker compose up db 
+
+        backend: in /backend 
+        .venv\Scripts\activate
+        fastapi dev app/main.py
+
+        frontend: in /frontend
+        npm run dev
+
+
+ALEMBIC MIGRATIONS

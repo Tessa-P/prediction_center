@@ -50,10 +50,10 @@ services:
     ports:
       - "5432:5432"
 
-  adminer:
+  pgadmin:
     restart: "no"
     ports:
-      - "8080:8080"
+      - "8080:80"
 
   backend:
     restart: "no"
