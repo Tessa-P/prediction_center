@@ -56,8 +56,8 @@ class Context(SQLModel, table=True):
     )
     id: int | None = Field(default=None, primary_key=True)
     datatype_id: int = Field(default=None, foreign_key="datatype.id")
-    age_id: int | None = Field(default=None, foreign_key="age.id")
-    gender_id: int | None = Field(default=None, foreign_key="gender.id")
+    age_id: int = Field(default=None, foreign_key="age.id")
+    gender_id: int = Field(default=None, foreign_key="gender.id")
     region_id: int = Field(default=None, foreign_key="region.id")
 
 
