@@ -50,7 +50,10 @@ class Report(SQLModel, table=True):
     title: str
 
 
-class Series(SQLModel, table=True):
+class Context(SQLModel, table=True):
+    __table_args__ = (
+        UniqueConstraint("datatype_id", "age_id", "gender_id", "region_id"),
+    )
     id: int | None = Field(default=None, primary_key=True)
     datatype_id: int = Field(default=None, foreign_key="datatype.id")
     age_id: int | None = Field(default=None, foreign_key="age.id")
@@ -60,13 +63,13 @@ class Series(SQLModel, table=True):
 
 class Datapoint(SQLModel, table=True):
     __table_args__ = (
-        UniqueConstraint("report_id", "series_id", "scenario_id", "year_analyzed"),
+        UniqueConstraint("report_id", "context_id", "scenario_id", "year_analyzed"),
     )
 
     id: int | None = Field(default=None, primary_key=True)
     input_at: datetime = Field(default_factory=get_datetime_utc)
     report_id: int = Field(default=None, foreign_key="report.id")
-    series_id: int = Field(default=None, foreign_key="series.id")
+    context_id: int = Field(default=None, foreign_key="context.id")
     scenario_id: int = Field(default=None, foreign_key="scenario.id")
     year_analyzed: int
     value: float
